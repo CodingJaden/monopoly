@@ -25,6 +25,17 @@
 		</div>
 	</div>
 
+	<div id="shopwrap">
+		<div id="shoppopup">
+			<div style="position: relative;">
+				<!-- <img id="popupclose" src="Images/close.png" title="Close" alt="x" onclick="hide('popupbackground'); hide('popupwrap');" /> -->
+				<div id="shoptext"></div>
+				<div id="shopdrag"></div>
+			</div>
+		</div>
+	</div>
+
+
 	<div id="statsbackground"></div>
 	<div id="statswrap">
 		<div id="stats">
@@ -172,6 +183,9 @@
 	</table>
 
 	<div id="moneybarwrap">
+		<div id="balancebar">
+			<p>Balance: £<span id="globalbalance">0</span></p>
+		</div>
 		<div id="moneybar">
 			<table>
 				<tr id="moneybarrow1" class="money-bar-row">
@@ -469,7 +483,7 @@
 		<div id="noF5">Note: Refreshing this page or navigating away from it may end your game without warning.</div>
 	
 		<br>
-		<div id="setupgif">GIF HERE</div>
+		<div id="setupgif">GIF HERE (SAVING API POINTS)</div>
 		<!--<script type="text/javascript" src="gif.js"></script>-->
 
 	</div>
@@ -494,6 +508,10 @@
 
 									<a href="javascript:void(0);" title="Exchange property with other players.">Trade</a>
 								</td>
+								<td class="menu-item" id="money-menu-item">
+
+									<a href="javascript:void(0);" title="Buy Ingame Stuff.">Shop</a>
+								</td>
 							</tr>
 						</table>
 					</div>
@@ -511,6 +529,9 @@
 							<input type="button" value="Sell house" id="sellhousebutton"/>
 						</div>
 						<div id="owned"></div>
+					</div>
+					<div id="shop">
+						<input type="button" id="openshop" value="Buy Perks!" onclick="game.openInGameShop();" title="" />
 					</div>
 				</td>
 				<td style="vertical-align: top; border: none;">

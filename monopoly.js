@@ -9,6 +9,8 @@ function Game() {
 	var currentbidder = 1;
 	var auctionproperty;
 
+	var realMoney = 0;
+
 	this.rollDice = function() {
 		die1 = Math.floor(Math.random() * 6) + 1;
 		die2 = Math.floor(Math.random() * 6) + 1;
@@ -1102,6 +1104,16 @@ function Game() {
 		}
 	};
 
+	this.openInGameShop = function() {
+		shoppopup("<h1>Ingame Shop")
+	}
+
+	this.purchaseMoney = function(amount){
+		realMoney = realMoney + amount;
+		document.getElementById("globalbalance").innerHTML = realMoney;
+
+	}
+
 }
 
 var game;
@@ -1277,6 +1289,35 @@ function popup(HTML, action, option) {
 
 }
 
+function shoppopup(HTML, action, option) {
+	document.getElementById("shoptext").innerHTML = '<h1>Ingame Shop</h1>£10 <input type="button" id="purchase10" value="Purchase" onclick="game.purchaseMoney(10);" title="" /><br><br>£20 <input type="button" id="purchase20" value="Purchase" onclick="game.purchaseMoney(20);" title="" /><br><br>£30 <input type="button" id="purchase50" value="Purchase" onclick="game.purchaseMoney(50);" title="" /><br><br>';
+	document.getElementById("shoppopup").style.width = "300px";
+	document.getElementById("shoppopup").style.top = "0px";
+	document.getElementById("shoppopup").style.left = "0px";
+
+	if (!option && typeof action === "string") {
+		option = action;
+	}
+
+	option = option ? option.toLowerCase() : "";
+
+	if (typeof action !== "function") {
+		action = null;
+	}
+
+		$("#shoptext").append("<div><input type='button' value='OK' id='popupclose' /></div>");
+
+		$("#popupclose").on("click", function() {
+			$("#shopwrap").hide();
+			$("#popupbackground").fadeOut(400);
+		}).on("click", action);
+
+	// Show using animation.
+	$("#popupbackground").fadeIn(400, function() {
+		$("#shopwrap").show();
+	});
+
+}
 
 function updatePosition() {
 	// Reset borders
@@ -2420,6 +2461,7 @@ function roll() {
 	$("#option").hide();
 	$("#buy").show();
 	$("#manage").hide();
+	$("#shop").hide();
 
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
@@ -2994,15 +3036,22 @@ window.onload = function() {
 	$("#buy-menu-item").click(function() {
 		$("#buy").show();
 		$("#manage").hide();
+		$("#shop").hide();
 
 		// Scroll alerts to bottom.
 		$("#alert").scrollTop($("#alert").prop("scrollHeight"));
 	});
 
+	$("#money-menu-item").click(function() {
+		$("#manage").hide();
+		$("#buy").hide();
+		$("#shop").show();
+	});
 
 	$("#manage-menu-item").click(function() {
 		$("#manage").show();
 		$("#buy").hide();
+		$("#shop").hide();
 	});
 
 
