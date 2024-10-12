@@ -89,6 +89,9 @@ td {
 	padding: 10px;
 	display: none;
 	background-color: white;
+	background: url("subway.gif");
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #quickstats {
@@ -99,10 +102,6 @@ td {
 	margin: 5px;
 	padding: 3px;
 	width: 80px;
-}
-
-#pname {
-	background-color: white;
 }
 
 #landed {
