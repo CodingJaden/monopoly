@@ -2434,28 +2434,28 @@ function roll() {
 	doublecount++;
 
 	if (die1 == die2) {
-		addAlert(p.name + " rolled " + (die1 + die2) + " - doubles.");
+		addAlert(p.name + " spun " + (die1 + die2) + " - doubles.");
 	} else {
-		addAlert(p.name + " rolled " + (die1 + die2) + ".");
+		addAlert(p.name + " spun " + (die1 + die2) + ".");
 	}
 
 	if (die1 == die2 && !p.jail) {
 		updateDice(die1, die2);
 
 		if (doublecount < 3) {
-			document.getElementById("nextbutton").value = "Roll again";
-			document.getElementById("nextbutton").title = "You threw doubles. Roll again.";
+			document.getElementById("nextbutton").value = "Spin again";
+			document.getElementById("nextbutton").title = "You threw doubles. Spin again.";
 
 		// If player rolls doubles three times in a row, send him to jail
 		} else if (doublecount === 3) {
 			p.jail = true;
 			doublecount = 0;
-			addAlert(p.name + " rolled doubles three times in a row.");
+			addAlert(p.name + " spun doubles three times in a row.");
 			updateMoney();
 
 
 			if (p.human) {
-				popup("You rolled doubles three times in a row. Go to jail.", gotojail);
+				popup("You spun doubles three times in a row. Go to jail.", gotojail);
 			} else {
 				gotojail();
 			}
@@ -2486,7 +2486,7 @@ function roll() {
 			p.position = 10 + die1 + die2;
 			doublecount = 0;
 
-			addAlert(p.name + " rolled doubles to get out of jail.");
+			addAlert(p.name + " spun doubles to get out of jail.");
 
 			land();
 		} else {
@@ -2559,8 +2559,8 @@ function play() {
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
-	document.getElementById("nextbutton").value = "Roll Dice";
-	document.getElementById("nextbutton").title = "Roll the dice and move your token accordingly.";
+	document.getElementById("nextbutton").value = "Spin the Wheel";
+	document.getElementById("nextbutton").title = "Spin the dice and move your token accordingly.";
 
 	$("#die0").hide();
 	$("#die1").hide();
@@ -2573,14 +2573,14 @@ function play() {
 			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
 		}
 
-		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
+		document.getElementById("nextbutton").title = "Spin the dice. If you throw doubles, you will get out of jail.";
 
 		if (p.jailroll === 0)
 			addAlert("This is " + p.name + "'s first turn in jail.");
 		else if (p.jailroll === 1)
 			addAlert("This is " + p.name + "'s second turn in jail.");
 		else if (p.jailroll === 2) {
-			document.getElementById("landed").innerHTML += "<div>NOTE: If you do not throw doubles after this roll, you <i>must</i> pay the $50 fine.</div>";
+			document.getElementById("landed").innerHTML += "<div>NOTE: If you do not throw doubles after this Spin, you <i>must</i> pay the $50 fine.</div>";
 			addAlert("This is " + p.name + "'s third turn in jail.");
 		}
 
